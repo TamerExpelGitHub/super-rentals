@@ -11,4 +11,5 @@ Router.map(function () {
   this.route('contact', { path: '/getting-in-touch' }); // defining route(s) with custom paths
   // useful for legacy URL and use new shorter
   // name for the route as well as template filename
+  this.route('rental', { path: '/rentals/:rental_id' }); // dynamic segment
 });

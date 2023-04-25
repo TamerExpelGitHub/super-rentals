@@ -1,0 +1,16 @@
+<div class="rentals">
+  <label>
+    <span>Where would you like to stay?</span>
+    {{!-- 'this.query' is tracked in its JavaScript file: rentals.js --}}
+    <Input @value={{this.query}} class="light" />
+  </label>
+
+  <ul class="results">
+    {{!-- Passing @rentals which is collected by Ember Data via model() hook. Also passing @query from the input and sent to the rentals/filter.js JavaScript file to filter the @rentals data based on @query and return as 'results' to be displayed below --}}
+    <Rentals::Filter @rentals={{@rentals}} @query={{this.query}} as |results| >
+      {{#each results as |rental|}}
+        <li><Rental @rental={{rental}} /></li>
+      {{/each}}
+    </Rentals::Filter>
+  </ul>
+</div>

@@ -6,11 +6,5 @@
     </LinkTo>
 </Jumbo>
 
-<div class="rentals">
-  <ul class="results">
-    {{!-- As data are fetched through model() hook (@model), @model is futher broken down into each element as "rental" and each is passed to the component via @rental={{rental}} --}}
-    {{#each @model as |rental|}}
-      <li><Rental @rental={{rental}} /></li>
-    {{/each}}
-  </ul>
-</div>
+{{!-- @model pass data from the app/routes/index.js model() hook which was fetched using Ember Data --}}
+<Rentals @rentals={{@model}} />

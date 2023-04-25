@@ -1,6 +1,6 @@
 # super-rentals
 
-This README will serve as a personal notes for myself to keep my understanding of EmberJS fresh.
+This README will serve as a personal notes for myself to maintain my understanding of EmberJS.
 
 ## Conventions
 
@@ -21,6 +21,10 @@ This README will serve as a personal notes for myself to keep my understanding o
 ## Understanding `{{yield}}`
 
 > When invoking a component, Ember will replace the component tag with the content found in the component's template. It is also common to pass content to components, like `<Jumbo>some content</Jumbo>`. This is enabled using `{{yield}}` keyword, which will be replaced with the content that was passed to the component.
+
+## Model Hook
+
+> An async method known as `model()`. Responsible for fetching and preparing any data for the route. Ember automatically call this hook when entering a route. Also typically housed in routes
 
 ## Understanding `...attributes`
 
@@ -46,9 +50,29 @@ This README will serve as a personal notes for myself to keep my understanding o
 
 > Inform ember that we intend to use this method from our template. Without the decorator, the function will not function properly as a callback function.
 
+### `@attr`
+
+> Used to declare the attributes of a rental property. These attributes correspond directly to the attributes data we expect the server to provide in its responses.
+
 ## Ember [modifier](https://guides.emberjs.com/release/components/template-lifecycle-dom-and-modifiers/#toc_event-handlers)
 
-> Event handler added to an HTML element. Operate by passing the element to a function that can do anything with it.
+> Event handler (i.e.: `{{ on ... }}`) added to an HTML element. Operate by passing the element to a function that can do anything with it.
+
+## Ember Services
+
+> In Ember, services serve a similar role to global variables, in that they can be easily accessible by any part of the app. The bigget difference from global variables, is that services are scoped to your app; instead of all the JavaScript code that's running on the same page. This allows you to have multiple scripts running on the same page without interfering with each other.
+
+## [Ember Data](https://guides.emberjs.com/release/models/)
+
+> Ember Data store acts as a kind of intermediary between our app and the server; it does many important things, including caching the responses that were fetched from the server. If we request some records (instances of model classes) that we had _already_ fetched from the server in the past, Ember Data's store ensures that we can access the records immediately, without having to fetch them again unnecessarily and wait for the server to response. But, if we don't already have that response cached in our store, then it will go off and fetches it from the server.
+
+## Adapter
+
+> Adapters deal with _how_ and _where_ Ember Data should fetch data from your servers, such as whether to use HTTP, HTTPS, WebSockets, or local storage, as well as the URLs, headers and parameters to use for these requests.
+
+## Serializer
+
+> Serializers are in charge of converting the data returned by the server into a format Ember Data can understand.
 
 ## Automated Testing
 
@@ -58,9 +82,13 @@ This README will serve as a personal notes for myself to keep my understanding o
 >
 > Automated testing URL: [`http://localhost:7357/`](http://localhost:7357/)
 >
-> Acceptance testing test the _work flow_ of an application. Since a page can take time to load, we use `async/await` to ensure that each step wait its turn before moving on.
+> **Acceptance testing** test the _work flow_ of an application. Since a page can take time to load, we use `async/await` to ensure that each step wait its turn before moving on.
 >
-> Component test, also known as rendering (integration) test used to render and test a single component at a time.
+> **Component test**, also known as rendering (integration) test used to render and test a single component at a time.
+>
+> **Unit test** doesn't actually render anything. It instantiates the model object and tests the model object directly, manipulating its attributes and asserting their value.
+>
+> `beforeEach` is a hook used to share boilerplate code, that allows you to have two tests that each focus on different, single aspect of the component. `beforeEach` runs once before each test function which is an ideal place to set up anything that might be needed by all test cases in the file.
 
 ## Ember Generators
 
@@ -85,10 +113,6 @@ This README will serve as a personal notes for myself to keep my understanding o
 > `ember generate component <name> --with-component-class`
 >
 > alt: `ember g component <name> -gc`
-
-## Model Hook
-
-> An async method known as `model()`. Responsible for fetching and preparing any data for the route. Ember automatically call this hook when entering a route.
 
 ### Acceptance Test generator
 
